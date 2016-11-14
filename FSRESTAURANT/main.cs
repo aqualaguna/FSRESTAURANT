@@ -15,8 +15,8 @@ namespace Form_Event
     {
         #region 
         InsertEvent InsertEvent;
-        ChangingEvent ChangingEvent;
-        DisplayEvent Display;
+        changingEvent ChangingEvent;
+        displayEvent Display;
         public static FSRESTAURANT FS = new FSRESTAURANT();
         public static FSRESTAURANTTableAdapters.TableAdapterManager adapterMgr = new FSRESTAURANTTableAdapters.TableAdapterManager();
         public static MySqlConnection c = new MySqlConnection("server=52.87.187.66;user id=theresa;persistsecurityinfo=True;database=restaurant;allowuservariables=True;password=theresa");

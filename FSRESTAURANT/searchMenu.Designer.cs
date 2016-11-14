@@ -1,6 +1,6 @@
 ﻿namespace Form_Event
 {
-    partial class SearchMenu
+    partial class searchMenu
     {
         /// <summary>
         /// Required designer variable.

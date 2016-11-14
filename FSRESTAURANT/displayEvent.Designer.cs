@@ -1,6 +1,6 @@
 ﻿namespace Form_Event
 {
-    partial class DisplayEvent
+    partial class displayEvent
     {
         /// <summary>
         /// Required designer variable.

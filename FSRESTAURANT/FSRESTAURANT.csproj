@@ -52,17 +52,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChangingEvent.cs">
+    <Compile Include="changingEvent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChangingEvent.Designer.cs">
-      <DependentUpon>ChangingEvent.cs</DependentUpon>
+    <Compile Include="changingEvent.Designer.cs">
+      <DependentUpon>changingEvent.cs</DependentUpon>
     </Compile>
-    <Compile Include="DisplayEvent.cs">
+    <Compile Include="displayEvent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DisplayEvent.Designer.cs">
-      <DependentUpon>DisplayEvent.cs</DependentUpon>
+    <Compile Include="displayEvent.Designer.cs">
+      <DependentUpon>displayEvent.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -86,17 +86,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchMenu.cs">
+    <Compile Include="searchMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchMenu.Designer.cs">
-      <DependentUpon>SearchMenu.cs</DependentUpon>
+    <Compile Include="searchMenu.Designer.cs">
+      <DependentUpon>searchMenu.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ChangingEvent.resx">
-      <DependentUpon>ChangingEvent.cs</DependentUpon>
+    <EmbeddedResource Include="changingEvent.resx">
+      <DependentUpon>changingEvent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DisplayEvent.resx">
-      <DependentUpon>DisplayEvent.cs</DependentUpon>
+    <EmbeddedResource Include="displayEvent.resx">
+      <DependentUpon>displayEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -113,8 +113,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SearchMenu.resx">
-      <DependentUpon>SearchMenu.cs</DependentUpon>
+    <EmbeddedResource Include="searchMenu.resx">
+      <DependentUpon>searchMenu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="FSRESTAURANT.xsc">
       <DependentUpon>FSRESTAURANT.xsd</DependentUpon>

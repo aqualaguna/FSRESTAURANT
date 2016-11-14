@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Form_Event
 {
-    public partial class ChangingEvent : Form
+    public partial class changingEvent : Form
     {
-        public ChangingEvent()
+        public changingEvent()
         {
             InitializeComponent();
         }
