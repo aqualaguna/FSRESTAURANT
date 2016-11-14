@@ -1,6 +1,6 @@
-﻿namespace Form_Event
+﻿namespace FS_REST
 {
-    partial class Main
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,11 +32,10 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.operationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insertEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changingEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dcPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,37 +60,24 @@
             // 
             this.operationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.insertEventToolStripMenuItem,
-            this.changingEventToolStripMenuItem,
-            this.exitToolStripMenuItem,
-            this.exitToolStripMenuItem1});
+            this.searchEventToolStripMenuItem});
             this.operationToolStripMenuItem.Name = "operationToolStripMenuItem";
-            this.operationToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
-            this.operationToolStripMenuItem.Text = "Operation";
+            this.operationToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.operationToolStripMenuItem.Text = "Event";
             // 
             // insertEventToolStripMenuItem
             // 
             this.insertEventToolStripMenuItem.Name = "insertEventToolStripMenuItem";
-            this.insertEventToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.insertEventToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.insertEventToolStripMenuItem.Text = "Insert Event";
             this.insertEventToolStripMenuItem.Click += new System.EventHandler(this.insertEventToolStripMenuItem_Click);
             // 
-            // changingEventToolStripMenuItem
+            // searchEventToolStripMenuItem
             // 
-            this.changingEventToolStripMenuItem.Name = "changingEventToolStripMenuItem";
-            this.changingEventToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.changingEventToolStripMenuItem.Text = "Changing Event";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.exitToolStripMenuItem.Text = "Save";
-            // 
-            // exitToolStripMenuItem1
-            // 
-            this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
-            this.exitToolStripMenuItem1.Text = "Exit";
+            this.searchEventToolStripMenuItem.Name = "searchEventToolStripMenuItem";
+            this.searchEventToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.searchEventToolStripMenuItem.Text = "Search Event";
+            this.searchEventToolStripMenuItem.Click += new System.EventHandler(this.searchEventToolStripMenuItem_Click);
             // 
             // dataToolStripMenuItem
             // 
@@ -107,18 +93,27 @@
             this.displayToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.displayToolStripMenuItem.Text = "Display";
             // 
-            // Form1
+            // dcPanel
+            // 
+            this.dcPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dcPanel.Location = new System.Drawing.Point(0, 24);
+            this.dcPanel.Name = "dcPanel";
+            this.dcPanel.Size = new System.Drawing.Size(684, 438);
+            this.dcPanel.TabIndex = 2;
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 462);
+            this.Controls.Add(this.dcPanel);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form Event";
+            this.Text = "FSRESTAURANT";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -133,11 +128,10 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem operationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem insertEventToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changingEventToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem displayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem searchEventToolStripMenuItem;
+        private WeifenLuo.WinFormsUI.Docking.DockPanel dcPanel;
     }
 }
 

@@ -1,4 +1,4 @@
-﻿namespace Form_Event
+﻿namespace FS_REST
 {
     partial class searchMenu
     {
@@ -128,6 +128,7 @@
             this.Name = "searchMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Search";
+            this.Load += new System.EventHandler(this.searchMenu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

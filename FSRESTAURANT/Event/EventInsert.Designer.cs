@@ -1,6 +1,6 @@
-﻿namespace Form_Event
+﻿namespace FS_REST
 {
-    partial class InsertEvent
+    partial class EventInsert
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,7 @@
             this.dtStop = new System.Windows.Forms.DateTimePicker();
             this.lbMenu = new System.Windows.Forms.ListBox();
             this.btnRight2 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgEventDetail = new System.Windows.Forms.DataGridView();
             this.btnRight = new System.Windows.Forms.Button();
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnLeft2 = new System.Windows.Forms.Button();
@@ -50,10 +50,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.gpHeader = new System.Windows.Forms.GroupBox();
             this.tbSearch = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmCapacity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEventDetail)).BeginInit();
             this.gpHeader.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -161,13 +165,13 @@
             this.btnRight2.UseVisualStyleBackColor = true;
             this.btnRight2.Click += new System.EventHandler(this.btnRight2_Click);
             // 
-            // dataGridView1
+            // dgEventDetail
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(264, 210);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(238, 266);
-            this.dataGridView1.TabIndex = 20;
+            this.dgEventDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgEventDetail.Location = new System.Drawing.Point(264, 210);
+            this.dgEventDetail.Name = "dgEventDetail";
+            this.dgEventDetail.Size = new System.Drawing.Size(238, 266);
+            this.dgEventDetail.TabIndex = 20;
             // 
             // btnRight
             // 
@@ -201,12 +205,13 @@
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(111, 482);
+            this.btnInsert.Location = new System.Drawing.Point(3, 3);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(253, 28);
+            this.btnInsert.Size = new System.Drawing.Size(126, 28);
             this.btnInsert.TabIndex = 24;
             this.btnInsert.Text = "Insert";
             this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // tbDescription
             // 
@@ -252,31 +257,62 @@
             this.tbSearch.TabIndex = 27;
             this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
             // 
-            // InsertEvent
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.btnInsert);
+            this.flowLayoutPanel1.Controls.Add(this.btnUpdate);
+            this.flowLayoutPanel1.Controls.Add(this.btnDelete);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(7, 482);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(495, 34);
+            this.flowLayoutPanel1.TabIndex = 28;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(135, 3);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(126, 28);
+            this.btnUpdate.TabIndex = 25;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(267, 3);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(126, 28);
+            this.btnDelete.TabIndex = 26;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // EventInsert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(522, 526);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.gpHeader);
-            this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.btnLeft2);
             this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.btnRight);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgEventDetail);
             this.Controls.Add(this.btnRight2);
             this.Controls.Add(this.lbMenu);
             this.Controls.Add(this.label7);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
-            this.Name = "InsertEvent";
+            this.Name = "EventInsert";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "insertEvent";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmCapacity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEventDetail)).EndInit();
             this.gpHeader.ResumeLayout(false);
             this.gpHeader.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,7 +333,7 @@
         private System.Windows.Forms.Button btnLeft2;
         private System.Windows.Forms.Button btnLeft;
         private System.Windows.Forms.Button btnRight;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgEventDetail;
         private System.Windows.Forms.Button btnRight2;
         private System.Windows.Forms.ListBox lbMenu;
         private System.Windows.Forms.DateTimePicker dtStop;
@@ -305,5 +341,8 @@
         private System.Windows.Forms.RichTextBox tbDescription;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbSearch;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
