@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Form_Event
 {
-    public partial class searchMenu : Form
+    public partial class SearchMenu : Form
     {
-        public searchMenu()
+        public SearchMenu()
         {
             InitializeComponent();
         }
