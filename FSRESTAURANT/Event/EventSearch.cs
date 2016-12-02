@@ -80,13 +80,8 @@ namespace FS_REST
 
         private void monthView1_SelectionChanged(object sender, EventArgs e)
         {
-            try
-            {
+            if(monthView1.SelectionEnd.Subtract(monthView1.SelectionStart).Days<=70)
                 EventCalendar.SetViewRange(monthView1.SelectionStart, monthView1.SelectionEnd);
-            }
-            catch 
-            {
-            }
         }
 
         private void EventCalendar_LoadItems(object sender, CalendarLoadEventArgs e)

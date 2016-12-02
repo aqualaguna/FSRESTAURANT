@@ -13,7 +13,7 @@ namespace FS_REST
     public partial class searchMenu : Form
     {
         EventChanging ChangingEvent;
-        FSRESTAURANT.MENU_RESTAURANTDataTable masterMenu;
+        FSRESTAURANT.MENU_HEADERDataTable masterMenu;
         public searchMenu( EventChanging ChangingEvent)
         {
             InitializeComponent();

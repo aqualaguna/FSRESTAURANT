@@ -16,17 +16,17 @@ namespace FS_REST
         #region 
         public static FSRESTAURANT FS = new FSRESTAURANT();
         public static FSRESTAURANTTableAdapters.TableAdapterManager adapterMgr = new FSRESTAURANTTableAdapters.TableAdapterManager();
-        public static MySqlConnection c = new MySqlConnection("server=52.87.187.66;user id=theresa;persistsecurityinfo=True;database=restaurant;allowuservariables=True;password=theresa");
-        
+        public static MySqlConnection c =new MySqlConnection(Properties.Settings.Default.restaurantConnectionString);
+        public static FSRESTAURANT.PEGAWAI_RESTAURANTRow peg;
         #endregion
         public MainForm()
         {
             InitializeComponent();
-           
             //initialize active record pattern
             try
             {
-                c.Open();
+                if(c.State==ConnectionState.Closed)
+                    c.Open();
                 adapterMgr.initialize(c, FS, true, true);
             }
             catch (Exception ex)
@@ -43,8 +43,7 @@ namespace FS_REST
         private void insertEventToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EventInsert eventi = new EventInsert(StateWindow.insert,null);
-            eventi.MdiParent = this;
-            eventi.Show(dcPanel);
+            eventi.ShowDialog();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -57,6 +56,23 @@ namespace FS_REST
             EventSearch eventi = new EventSearch(FS.EVENT_HEADER);
             eventi.MdiParent = this;
             eventi.Show(dcPanel);
+        }
+
+        private void newTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Event.Table tb = new Event.Table();
+            tb.ShowDialog();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            peg = null;
+            Login.tis.clear();
+            Login.tis.Show();
+        }
+        public void setPegawai(FSRESTAURANT.PEGAWAI_RESTAURANTRow dr)
+        {
+            peg = dr;
         }
     }
     public enum StateWindow

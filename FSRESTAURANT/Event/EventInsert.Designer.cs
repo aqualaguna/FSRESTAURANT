@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epevent = new System.Windows.Forms.ErrorProvider(this.components);
             this.tbNama = new System.Windows.Forms.TextBox();
             this.nmCapacity = new System.Windows.Forms.NumericUpDown();
             this.dtStart = new System.Windows.Forms.DateTimePicker();
@@ -53,7 +53,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epevent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmCapacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgEventDetail)).BeginInit();
             this.gpHeader.SuspendLayout();
@@ -87,9 +87,9 @@
             this.label4.Text = "Date Time Start :";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // errorProvider1
+            // epevent
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.epevent.ContainerControl = this;
             // 
             // tbNama
             // 
@@ -106,9 +106,19 @@
             0,
             0,
             0});
+            this.nmCapacity.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.nmCapacity.Name = "nmCapacity";
             this.nmCapacity.Size = new System.Drawing.Size(63, 20);
             this.nmCapacity.TabIndex = 11;
+            this.nmCapacity.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // dtStart
             // 
@@ -307,7 +317,7 @@
             this.Name = "EventInsert";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "insertEvent";
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epevent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmCapacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgEventDetail)).EndInit();
             this.gpHeader.ResumeLayout(false);
@@ -323,7 +333,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider epevent;
         private System.Windows.Forms.TextBox tbNama;
         private System.Windows.Forms.NumericUpDown nmCapacity;
         private System.Windows.Forms.DateTimePicker dtStart;

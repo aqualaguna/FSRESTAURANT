@@ -12,7 +12,7 @@ namespace FS_REST
 {
     public partial class EventInsert : DockContent
     {
-        FSRESTAURANT.MENU_RESTAURANTDataTable menudt = new FSRESTAURANT.MENU_RESTAURANTDataTable();
+        FSRESTAURANT.MENU_HEADERDataTable menudt = new FSRESTAURANT.MENU_HEADERDataTable();
         FSRESTAURANT.EVENT_DETAILDataTable evdetail = new FSRESTAURANT.EVENT_DETAILDataTable();
         FSRESTAURANT.EVENT_HEADERRow eheader;
         DataView dv,dvdetail;
@@ -24,7 +24,7 @@ namespace FS_REST
             eheader = header;
             InitializeComponent();
             //fill data from menu and fill the listbox
-            MainForm.adapterMgr.MENU_RESTAURANTTableAdapter.Fill(menudt);
+            MainForm.adapterMgr.MENU_HEADERTableAdapter.Fill(menudt);
             lbMenu.DisplayMember = "MENU_NAME";
             lbMenu.ValueMember = "MENU_ID";
             dv = menudt.AsDataView();
@@ -123,6 +123,7 @@ namespace FS_REST
         {
             try
             {
+                formValidation();
                 eventid =(long) MainForm.adapterMgr.EVENT_HEADERTableAdapter.nextId();
                 MainForm.adapterMgr.EVENT_HEADERTableAdapter.InsertQuery(tbNama.Text, dtStart.Value, dtStop.Value, nmCapacity.Value, tbDescription.Text);
                 foreach (FSRESTAURANT.EVENT_DETAILRow item in evdetail)
@@ -162,6 +163,29 @@ namespace FS_REST
                 MessageBox.Show(ex.Message);
             }
         }
+        private void formValidation()
+        {
+            bool flag = false;
+            if (tbNama.Text=="")
+            {
+                epevent.SetError(tbNama, "required");
+                flag = true;
+            }
+            if(dtStop.Value < dtStart.Value)
+            {
+                epevent.SetError(dtStart, "value start harus lebih kecil!");
+                epevent.SetError(dtStop, "value stop harus lebih besar!");
+                flag = true;
+            }
+            if(evdetail.Rows.Count==0)
+            {
+                epevent.SetError(dgEventDetail, "harus ada item!");
+                flag = true;
+            }
+            if(flag)
+                throw new FormValidationFailException("Format ada yang salah!");
+
+        }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -172,6 +196,7 @@ namespace FS_REST
         {
             try
             {
+                formValidation();
                 eheader.EVENT_NAME = tbNama.Text;
                 eheader.EVENT_START = dtStart.Value;
                 eheader.EVENT_STOP = dtStop.Value;

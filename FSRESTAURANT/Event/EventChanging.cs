@@ -17,7 +17,7 @@ namespace FS_REST
         public static MySqlConnection connect;
         FSRESTAURANT.EVENT_HEADERDataTable masterEventHeader;
         FSRESTAURANT.EVENT_DETAILDataTable masterEventDetail;
-        public FSRESTAURANT.MENU_RESTAURANTDataTable masterMenu;
+        public FSRESTAURANT.MENU_HEADERDataTable masterMenu;
 
         string  menuID;
         long eventID;
@@ -77,19 +77,7 @@ namespace FS_REST
 
         private void EventChanging_Load(object sender, EventArgs e)
         {
-            adapterMgr.EVENT_HEADERTableAdapter = new FSRESTAURANTTableAdapters.EVENT_HEADERTableAdapter();
-            adapterMgr.EVENT_HEADERTableAdapter.Connection = connect;
-            adapterMgr.EVENT_DETAILTableAdapter = new FSRESTAURANTTableAdapters.EVENT_DETAILTableAdapter();
-            adapterMgr.EVENT_DETAILTableAdapter.Connection = connect;
-            adapterMgr.MENU_RESTAURANTTableAdapter = new FSRESTAURANTTableAdapters.MENU_RESTAURANTTableAdapter();
-            adapterMgr.MENU_RESTAURANTTableAdapter.Connection = connect;
-
-
-            masterMenu = new FSRESTAURANT.MENU_RESTAURANTDataTable();
-            adapterMgr.MENU_RESTAURANTTableAdapter.Fill(masterMenu);
-
-            refreshMasterEventHeader();
-            refreshMasterEventDetail();
+          
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -173,14 +161,7 @@ namespace FS_REST
                     break;
                 }
             }
-            foreach (FSRESTAURANT.MENU_RESTAURANTRow item in masterMenu.Rows)
-            {
-                if (menuID == item.MENU_ID)
-                {
-                    textBox2.Text = item[2].ToString();
-                    break;
-                }
-            }
+          
         }
 
         public string getMenuID(string menuName)

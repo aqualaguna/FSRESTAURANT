@@ -26,8 +26,8 @@ namespace FS_REST.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=52.87.187.66;user id=theresa;persistsecurityinfo=True;database=restaurant;" +
-            "allowuservariables=True;password=theresa")]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=fsfinance.tk;user id=root;persistsecurityinfo=True;database=restaurant;all" +
+            "owuservariables=True;password=falsesilver")]
         public string restaurantConnectionString {
             get {
                 return ((string)(this["restaurantConnectionString"]));

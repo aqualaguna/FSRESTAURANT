@@ -32,7 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\ProyekPCS\ProyekPCS\bin\x86\Debug\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
@@ -41,7 +43,8 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms.Calendar, Version=1.0.6156.23489, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\System.Windows.Forms.Calendar.dll</HintPath>
+      <HintPath>..\..\..\..\ProyekPCS\System.Windows.Forms.Calendar.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,19 +56,31 @@
     <Reference Include="System.Xml" />
     <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.9.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+      <HintPath>..\..\..\..\ProyekPCS\packages\DockPanelSuite.2.10.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
     <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2013Blue, Version=2.9.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\WeifenLuo.WinFormsUI.Docking.ThemeVS2013Blue.dll</HintPath>
+      <HintPath>..\..\..\..\ProyekPCS\packages\DockPanelSuite.ThemeVS2013Blue.2.10.0\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2013Blue.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Event\EventBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Event\EventBook.Designer.cs">
+      <DependentUpon>EventBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Event\EventChanging.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Event\EventChanging.Designer.cs">
       <DependentUpon>EventChanging.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Event\EventPenjualan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Event\EventPenjualan.Designer.cs">
+      <DependentUpon>EventPenjualan.cs</DependentUpon>
     </Compile>
     <Compile Include="Event\EventSearch.cs">
       <SubType>Form</SubType>
@@ -73,12 +88,13 @@
     <Compile Include="Event\EventSearch.Designer.cs">
       <DependentUpon>EventSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Event\Table.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="Event\Table.Designer.cs">
+      <DependentUpon>Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExceptionHandler.cs" />
     <Compile Include="FSRESTAURANT.cs">
       <DependentUpon>FSRESTAURANT.xsd</DependentUpon>
     </Compile>
@@ -86,6 +102,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FSRESTAURANT.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Event\EventInsert.cs">
       <SubType>Form</SubType>
@@ -101,11 +129,23 @@
     <Compile Include="Menu\MenuSearch.Designer.cs">
       <DependentUpon>MenuSearch.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Event\EventBook.resx">
+      <DependentUpon>EventBook.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Event\EventChanging.resx">
       <DependentUpon>EventChanging.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Event\EventPenjualan.resx">
+      <DependentUpon>EventPenjualan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Event\EventSearch.resx">
       <DependentUpon>EventSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Event\Table.resx">
+      <DependentUpon>Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

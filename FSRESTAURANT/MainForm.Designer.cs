@@ -36,6 +36,8 @@
             this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dcPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.tableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +46,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.operationToolStripMenuItem,
-            this.dataToolStripMenuItem});
+            this.dataToolStripMenuItem,
+            this.tableToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(684, 24);
@@ -90,7 +93,7 @@
             // displayToolStripMenuItem
             // 
             this.displayToolStripMenuItem.Name = "displayToolStripMenuItem";
-            this.displayToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.displayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.displayToolStripMenuItem.Text = "Display";
             // 
             // dcPanel
@@ -100,6 +103,21 @@
             this.dcPanel.Name = "dcPanel";
             this.dcPanel.Size = new System.Drawing.Size(684, 438);
             this.dcPanel.TabIndex = 2;
+            // 
+            // tableToolStripMenuItem
+            // 
+            this.tableToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newTableToolStripMenuItem});
+            this.tableToolStripMenuItem.Name = "tableToolStripMenuItem";
+            this.tableToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.tableToolStripMenuItem.Text = "Table";
+            // 
+            // newTableToolStripMenuItem
+            // 
+            this.newTableToolStripMenuItem.Name = "newTableToolStripMenuItem";
+            this.newTableToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newTableToolStripMenuItem.Text = "New Table";
+            this.newTableToolStripMenuItem.Click += new System.EventHandler(this.newTableToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -114,6 +132,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FSRESTAURANT";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -132,6 +151,8 @@
         private System.Windows.Forms.ToolStripMenuItem displayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchEventToolStripMenuItem;
         private WeifenLuo.WinFormsUI.Docking.DockPanel dcPanel;
+        private System.Windows.Forms.ToolStripMenuItem tableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newTableToolStripMenuItem;
     }
 }
 
