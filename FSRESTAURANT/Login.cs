@@ -12,7 +12,7 @@ namespace FS_REST
 {
     public partial class Login : Form
     {
-        MainForm m = new MainForm();
+       
         public static Login tis;
         public Login()
         {
@@ -22,6 +22,8 @@ namespace FS_REST
 
         private void button1_Click(object sender, EventArgs e)
         {
+            MainForm m = new MainForm();
+            
             var r = MainForm.FS.PEGAWAI_RESTAURANT.Where(x => x.USER_NAMA == tbUsername.Text && x.USER_PASSWORD == tbPass.Text).ToArray();
             int dr = r.Count();
             if(dr==1)

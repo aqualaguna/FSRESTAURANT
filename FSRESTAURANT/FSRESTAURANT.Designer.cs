@@ -70,6 +70,8 @@ namespace FS_REST {
         
         private PENJUALAN_TABLE_NOTADataTable tablePENJUALAN_TABLE_NOTA;
         
+        private global::System.Data.DataRelation relationEVENT_HEADER_EVENT_PENJUALAN;
+        
         private global::System.Data.DataRelation relationFK_EVENTPENJUALAN;
         
         private global::System.Data.DataRelation relationFK_TABLE;
@@ -750,6 +752,7 @@ namespace FS_REST {
                     this.tablePENJUALAN_TABLE_NOTA.InitVars();
                 }
             }
+            this.relationEVENT_HEADER_EVENT_PENJUALAN = this.Relations["EVENT_HEADER_EVENT_PENJUALAN"];
             this.relationFK_EVENTPENJUALAN = this.Relations["FK_EVENTPENJUALAN"];
             this.relationFK_TABLE = this.Relations["FK_TABLE"];
             this.relationFK_REFERENCE_9 = this.Relations["FK_REFERENCE_9"];
@@ -826,8 +829,12 @@ namespace FS_REST {
                         this.tableEVENT_PENJUALAN.EVENT_IDColumn});
             this.tableEVENT_PENJUALAN.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.SetNull;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            this.relationEVENT_HEADER_EVENT_PENJUALAN = new global::System.Data.DataRelation("EVENT_HEADER_EVENT_PENJUALAN", new global::System.Data.DataColumn[] {
+                        this.tableEVENT_HEADER.EVENT_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableEVENT_PENJUALAN.EVENT_IDColumn}, false);
+            this.Relations.Add(this.relationEVENT_HEADER_EVENT_PENJUALAN);
             this.relationFK_EVENTPENJUALAN = new global::System.Data.DataRelation("FK_EVENTPENJUALAN", new global::System.Data.DataColumn[] {
                         this.tableEVENT_PENJUALAN.EVENT_PENJUALAN_IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableEVENT_BOOKING.EVENT_PENJUALAN_IDColumn}, false);
@@ -1161,11 +1168,11 @@ namespace FS_REST {
             
             private global::System.Data.DataColumn columnEVENT_PENJUALAN_ID;
             
-            private global::System.Data.DataColumn columnBOOKING_UPPAYMENT;
-            
             private global::System.Data.DataColumn columnBOOKING_START;
             
             private global::System.Data.DataColumn columnBOOKING_STOP;
+            
+            private global::System.Data.DataColumn columnEVENT_BOOKING_ID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1218,14 +1225,6 @@ namespace FS_REST {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn BOOKING_UPPAYMENTColumn {
-                get {
-                    return this.columnBOOKING_UPPAYMENT;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn BOOKING_STARTColumn {
                 get {
                     return this.columnBOOKING_START;
@@ -1237,6 +1236,14 @@ namespace FS_REST {
             public global::System.Data.DataColumn BOOKING_STOPColumn {
                 get {
                     return this.columnBOOKING_STOP;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn EVENT_BOOKING_IDColumn {
+                get {
+                    return this.columnEVENT_BOOKING_ID;
                 }
             }
             
@@ -1277,14 +1284,14 @@ namespace FS_REST {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EVENT_BOOKINGRow AddEVENT_BOOKINGRow(EVENT_TABLERow parentEVENT_TABLERowByFK_TABLE, EVENT_PENJUALANRow parentEVENT_PENJUALANRowByFK_EVENTPENJUALAN, decimal BOOKING_UPPAYMENT, System.DateTime BOOKING_START, System.DateTime BOOKING_STOP) {
+            public EVENT_BOOKINGRow AddEVENT_BOOKINGRow(EVENT_TABLERow parentEVENT_TABLERowByFK_TABLE, EVENT_PENJUALANRow parentEVENT_PENJUALANRowByFK_EVENTPENJUALAN, System.DateTime BOOKING_START, System.DateTime BOOKING_STOP) {
                 EVENT_BOOKINGRow rowEVENT_BOOKINGRow = ((EVENT_BOOKINGRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
-                        BOOKING_UPPAYMENT,
                         BOOKING_START,
-                        BOOKING_STOP};
+                        BOOKING_STOP,
+                        null};
                 if ((parentEVENT_TABLERowByFK_TABLE != null)) {
                     columnValuesArray[0] = parentEVENT_TABLERowByFK_TABLE[0];
                 }
@@ -1294,6 +1301,13 @@ namespace FS_REST {
                 rowEVENT_BOOKINGRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEVENT_BOOKINGRow);
                 return rowEVENT_BOOKINGRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EVENT_BOOKINGRow FindByEVENT_BOOKING_ID(long EVENT_BOOKING_ID) {
+                return ((EVENT_BOOKINGRow)(this.Rows.Find(new object[] {
+                            EVENT_BOOKING_ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1315,9 +1329,9 @@ namespace FS_REST {
             internal void InitVars() {
                 this.columnTABLE_ID = base.Columns["TABLE_ID"];
                 this.columnEVENT_PENJUALAN_ID = base.Columns["EVENT_PENJUALAN_ID"];
-                this.columnBOOKING_UPPAYMENT = base.Columns["BOOKING_UPPAYMENT"];
                 this.columnBOOKING_START = base.Columns["BOOKING_START"];
                 this.columnBOOKING_STOP = base.Columns["BOOKING_STOP"];
+                this.columnEVENT_BOOKING_ID = base.Columns["EVENT_BOOKING_ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1327,17 +1341,24 @@ namespace FS_REST {
                 base.Columns.Add(this.columnTABLE_ID);
                 this.columnEVENT_PENJUALAN_ID = new global::System.Data.DataColumn("EVENT_PENJUALAN_ID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEVENT_PENJUALAN_ID);
-                this.columnBOOKING_UPPAYMENT = new global::System.Data.DataColumn("BOOKING_UPPAYMENT", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBOOKING_UPPAYMENT);
                 this.columnBOOKING_START = new global::System.Data.DataColumn("BOOKING_START", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBOOKING_START);
                 this.columnBOOKING_STOP = new global::System.Data.DataColumn("BOOKING_STOP", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBOOKING_STOP);
+                this.columnEVENT_BOOKING_ID = new global::System.Data.DataColumn("EVENT_BOOKING_ID", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEVENT_BOOKING_ID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnEVENT_BOOKING_ID}, true));
                 this.columnTABLE_ID.AllowDBNull = false;
                 this.columnTABLE_ID.MaxLength = 3;
+                this.columnEVENT_PENJUALAN_ID.AllowDBNull = false;
                 this.columnEVENT_PENJUALAN_ID.MaxLength = 16;
-                this.columnBOOKING_UPPAYMENT.AllowDBNull = false;
                 this.columnBOOKING_START.AllowDBNull = false;
+                this.columnEVENT_BOOKING_ID.AutoIncrement = true;
+                this.columnEVENT_BOOKING_ID.AutoIncrementSeed = -1;
+                this.columnEVENT_BOOKING_ID.AutoIncrementStep = -1;
+                this.columnEVENT_BOOKING_ID.AllowDBNull = false;
+                this.columnEVENT_BOOKING_ID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2255,19 +2276,22 @@ namespace FS_REST {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EVENT_PENJUALANRow AddEVENT_PENJUALANRow(PEGAWAI_RESTAURANTRow parentPEGAWAI_RESTAURANTRowByFK_REFERENCE_6, string EVENT_PENJUALAN_ID, PELANGGAN_RESTAURANTRow parentPELANGGAN_RESTAURANTRowByFK_REFERENCE_16, decimal TOTAL, long EVENT_ID) {
+            public EVENT_PENJUALANRow AddEVENT_PENJUALANRow(PEGAWAI_RESTAURANTRow parentPEGAWAI_RESTAURANTRowByFK_REFERENCE_6, string EVENT_PENJUALAN_ID, PELANGGAN_RESTAURANTRow parentPELANGGAN_RESTAURANTRowByFK_REFERENCE_16, decimal TOTAL, EVENT_HEADERRow parentEVENT_HEADERRowByEVENT_HEADER_EVENT_PENJUALAN) {
                 EVENT_PENJUALANRow rowEVENT_PENJUALANRow = ((EVENT_PENJUALANRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         EVENT_PENJUALAN_ID,
                         null,
                         TOTAL,
-                        EVENT_ID};
+                        null};
                 if ((parentPEGAWAI_RESTAURANTRowByFK_REFERENCE_6 != null)) {
                     columnValuesArray[0] = parentPEGAWAI_RESTAURANTRowByFK_REFERENCE_6[0];
                 }
                 if ((parentPELANGGAN_RESTAURANTRowByFK_REFERENCE_16 != null)) {
                     columnValuesArray[2] = parentPELANGGAN_RESTAURANTRowByFK_REFERENCE_16[0];
+                }
+                if ((parentEVENT_HEADERRowByEVENT_HEADER_EVENT_PENJUALAN != null)) {
+                    columnValuesArray[4] = parentEVENT_HEADERRowByEVENT_HEADER_EVENT_PENJUALAN[0];
                 }
                 rowEVENT_PENJUALANRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEVENT_PENJUALANRow);
@@ -2791,6 +2815,10 @@ namespace FS_REST {
             
             private global::System.Data.DataColumn columnTABLE_STATUS;
             
+            private global::System.Data.DataColumn columnTABLE_NAME;
+            
+            private global::System.Data.DataColumn columnTABLE_PRICE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public EVENT_TABLEDataTable() {
@@ -2850,6 +2878,22 @@ namespace FS_REST {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TABLE_NAMEColumn {
+                get {
+                    return this.columnTABLE_NAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TABLE_PRICEColumn {
+                get {
+                    return this.columnTABLE_PRICE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2885,12 +2929,14 @@ namespace FS_REST {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EVENT_TABLERow AddEVENT_TABLERow(string TABLE_ID, decimal TABLE_CAPACITY, string TABLE_STATUS) {
+            public EVENT_TABLERow AddEVENT_TABLERow(string TABLE_ID, decimal TABLE_CAPACITY, string TABLE_STATUS, string TABLE_NAME, decimal TABLE_PRICE) {
                 EVENT_TABLERow rowEVENT_TABLERow = ((EVENT_TABLERow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TABLE_ID,
                         TABLE_CAPACITY,
-                        TABLE_STATUS};
+                        TABLE_STATUS,
+                        TABLE_NAME,
+                        TABLE_PRICE};
                 rowEVENT_TABLERow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEVENT_TABLERow);
                 return rowEVENT_TABLERow;
@@ -2923,6 +2969,8 @@ namespace FS_REST {
                 this.columnTABLE_ID = base.Columns["TABLE_ID"];
                 this.columnTABLE_CAPACITY = base.Columns["TABLE_CAPACITY"];
                 this.columnTABLE_STATUS = base.Columns["TABLE_STATUS"];
+                this.columnTABLE_NAME = base.Columns["TABLE_NAME"];
+                this.columnTABLE_PRICE = base.Columns["TABLE_PRICE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2934,6 +2982,10 @@ namespace FS_REST {
                 base.Columns.Add(this.columnTABLE_CAPACITY);
                 this.columnTABLE_STATUS = new global::System.Data.DataColumn("TABLE_STATUS", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTABLE_STATUS);
+                this.columnTABLE_NAME = new global::System.Data.DataColumn("TABLE_NAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTABLE_NAME);
+                this.columnTABLE_PRICE = new global::System.Data.DataColumn("TABLE_PRICE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTABLE_PRICE);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnTABLE_ID}, true));
                 this.columnTABLE_ID.AllowDBNull = false;
@@ -2942,6 +2994,9 @@ namespace FS_REST {
                 this.columnTABLE_CAPACITY.AllowDBNull = false;
                 this.columnTABLE_STATUS.AllowDBNull = false;
                 this.columnTABLE_STATUS.MaxLength = 4;
+                this.columnTABLE_NAME.AllowDBNull = false;
+                this.columnTABLE_NAME.MaxLength = 45;
+                this.columnTABLE_PRICE.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8533,26 +8588,10 @@ namespace FS_REST {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string EVENT_PENJUALAN_ID {
                 get {
-                    try {
-                        return ((string)(this[this.tableEVENT_BOOKING.EVENT_PENJUALAN_IDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EVENT_PENJUALAN_ID\' in table \'EVENT_BOOKING\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableEVENT_BOOKING.EVENT_PENJUALAN_IDColumn]));
                 }
                 set {
                     this[this.tableEVENT_BOOKING.EVENT_PENJUALAN_IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal BOOKING_UPPAYMENT {
-                get {
-                    return ((decimal)(this[this.tableEVENT_BOOKING.BOOKING_UPPAYMENTColumn]));
-                }
-                set {
-                    this[this.tableEVENT_BOOKING.BOOKING_UPPAYMENTColumn] = value;
                 }
             }
             
@@ -8585,6 +8624,17 @@ namespace FS_REST {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long EVENT_BOOKING_ID {
+                get {
+                    return ((long)(this[this.tableEVENT_BOOKING.EVENT_BOOKING_IDColumn]));
+                }
+                set {
+                    this[this.tableEVENT_BOOKING.EVENT_BOOKING_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public EVENT_PENJUALANRow EVENT_PENJUALANRow {
                 get {
                     return ((EVENT_PENJUALANRow)(this.GetParentRow(this.Table.ParentRelations["FK_EVENTPENJUALAN"])));
@@ -8603,18 +8653,6 @@ namespace FS_REST {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_TABLE"]);
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEVENT_PENJUALAN_IDNull() {
-                return this.IsNull(this.tableEVENT_BOOKING.EVENT_PENJUALAN_IDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEVENT_PENJUALAN_IDNull() {
-                this[this.tableEVENT_BOOKING.EVENT_PENJUALAN_IDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8832,6 +8870,17 @@ namespace FS_REST {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EVENT_PENJUALANRow[] GetEVENT_PENJUALANRows() {
+                if ((this.Table.ChildRelations["EVENT_HEADER_EVENT_PENJUALAN"] == null)) {
+                    return new EVENT_PENJUALANRow[0];
+                }
+                else {
+                    return ((EVENT_PENJUALANRow[])(base.GetChildRows(this.Table.ChildRelations["EVENT_HEADER_EVENT_PENJUALAN"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public EVENT_DETAILRow[] GetEVENT_DETAILRows() {
                 if ((this.Table.ChildRelations["FKHEADER"] == null)) {
                     return new EVENT_DETAILRow[0];
@@ -8923,6 +8972,17 @@ namespace FS_REST {
                 }
                 set {
                     this[this.tableEVENT_PENJUALAN.EVENT_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EVENT_HEADERRow EVENT_HEADERRow {
+                get {
+                    return ((EVENT_HEADERRow)(this.GetParentRow(this.Table.ParentRelations["EVENT_HEADER_EVENT_PENJUALAN"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["EVENT_HEADER_EVENT_PENJUALAN"]);
                 }
             }
             
@@ -9143,6 +9203,28 @@ namespace FS_REST {
                 }
                 set {
                     this[this.tableEVENT_TABLE.TABLE_STATUSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TABLE_NAME {
+                get {
+                    return ((string)(this[this.tableEVENT_TABLE.TABLE_NAMEColumn]));
+                }
+                set {
+                    this[this.tableEVENT_TABLE.TABLE_NAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TABLE_PRICE {
+                get {
+                    return ((decimal)(this[this.tableEVENT_TABLE.TABLE_PRICEColumn]));
+                }
+                set {
+                    this[this.tableEVENT_TABLE.TABLE_PRICEColumn] = value;
                 }
             }
             
@@ -11629,16 +11711,71 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
             tableMapping.DataSetTable = "EVENT_BOOKING";
             tableMapping.ColumnMappings.Add("TABLE_ID", "TABLE_ID");
             tableMapping.ColumnMappings.Add("EVENT_PENJUALAN_ID", "EVENT_PENJUALAN_ID");
-            tableMapping.ColumnMappings.Add("BOOKING_UPPAYMENT", "BOOKING_UPPAYMENT");
             tableMapping.ColumnMappings.Add("BOOKING_START", "BOOKING_START");
             tableMapping.ColumnMappings.Add("BOOKING_STOP", "BOOKING_STOP");
+            tableMapping.ColumnMappings.Add("EVENT_BOOKING_ID", "EVENT_BOOKING_ID");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `EVENT_BOOKING` WHERE ((`EVENT_BOOKING_ID` = @p1) AND (`TABLE_ID` = @" +
+                "p2) AND (`EVENT_PENJUALAN_ID` = @p3) AND (`BOOKING_START` = @p4) AND ((@p5 = 1 A" +
+                "ND `BOOKING_STOP` IS NULL) OR (`BOOKING_STOP` = @p6)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p1";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int64;
+            param.IsNullable = true;
+            param.SourceColumn = "EVENT_BOOKING_ID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p2";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "TABLE_ID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p3";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "EVENT_PENJUALAN_ID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p4";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.DateTime;
+            param.IsNullable = true;
+            param.SourceColumn = "BOOKING_START";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p5";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "BOOKING_STOP";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p6";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.DateTime;
+            param.IsNullable = true;
+            param.SourceColumn = "BOOKING_STOP";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `EVENT_BOOKING` (`TABLE_ID`, `EVENT_PENJUALAN_ID`, `BOOKING_UPPAYMENT" +
-                "`, `BOOKING_START`, `BOOKING_STOP`) VALUES (@p1, @p2, @p3, @p4, @p5)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `EVENT_BOOKING` (`TABLE_ID`, `EVENT_PENJUALAN_ID`, `BOOKING_START`, `" +
+                "BOOKING_STOP`) VALUES (@p1, @p2, @p3, @p4)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
             param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
@@ -11654,25 +11791,99 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p3";
-            param.DbType = global::System.Data.DbType.Decimal;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
-            param.IsNullable = true;
-            param.SourceColumn = "BOOKING_UPPAYMENT";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p4";
             param.DbType = global::System.Data.DbType.DateTime;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.DateTime;
             param.IsNullable = true;
             param.SourceColumn = "BOOKING_START";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p5";
+            param.ParameterName = "@p4";
             param.DbType = global::System.Data.DbType.DateTime;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.DateTime;
             param.IsNullable = true;
             param.SourceColumn = "BOOKING_STOP";
             this._adapter.InsertCommand.Parameters.Add(param);
+            this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `EVENT_BOOKING` SET `TABLE_ID` = @p1, `EVENT_PENJUALAN_ID` = @p2, `BOOKING_START` = @p3, `BOOKING_STOP` = @p4 WHERE ((`EVENT_BOOKING_ID` = @p5) AND (`TABLE_ID` = @p6) AND (`EVENT_PENJUALAN_ID` = @p7) AND (`BOOKING_START` = @p8) AND ((@p9 = 1 AND `BOOKING_STOP` IS NULL) OR (`BOOKING_STOP` = @p10)))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p1";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "TABLE_ID";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p2";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "EVENT_PENJUALAN_ID";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p3";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.DateTime;
+            param.IsNullable = true;
+            param.SourceColumn = "BOOKING_START";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p4";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.DateTime;
+            param.IsNullable = true;
+            param.SourceColumn = "BOOKING_STOP";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p5";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int64;
+            param.IsNullable = true;
+            param.SourceColumn = "EVENT_BOOKING_ID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p6";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "TABLE_ID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p7";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "EVENT_PENJUALAN_ID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p8";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.DateTime;
+            param.IsNullable = true;
+            param.SourceColumn = "BOOKING_START";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p9";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "BOOKING_STOP";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p10";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.DateTime;
+            param.IsNullable = true;
+            param.SourceColumn = "BOOKING_STOP";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11688,8 +11899,8 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
             this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT `TABLE_ID`, `EVENT_PENJUALAN_ID`, `BOOKING_UPPAYMENT`, `BOOKING_START`, `B" +
-                "OOKING_STOP` FROM `EVENT_BOOKING`";
+            this._commandCollection[0].CommandText = "SELECT `EVENT_BOOKING_ID`, `TABLE_ID`, `EVENT_PENJUALAN_ID`, `BOOKING_START`, `BO" +
+                "OKING_STOP` FROM `EVENT_BOOKING`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -11744,47 +11955,6 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(global::System.Data.DataRow[] dataRows) {
             return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string p1, string p2, decimal p3, System.DateTime p4, global::System.Nullable<global::System.DateTime> p5) {
-            if ((p1 == null)) {
-                throw new global::System.ArgumentNullException("p1");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(p1));
-            }
-            if ((p2 == null)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(p2));
-            }
-            this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(p3));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(p4));
-            if ((p5.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(p5.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
         }
     }
     
@@ -13281,12 +13451,43 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
+            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[4];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT  `EVENT_PENJUALAN_ID`,`EVENT_ID`,`USER_ID`, `PELANGGAN_ID`, `TOTAL` FROM `" +
                 "EVENT_PENJUALAN`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "select genPenjualanId()";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "\nSELECT EV.*,PEL.PELANGGAN_NAME,PEG.USER_NAMA\nFROM EVENT_PENJUALAN EV,PEGAWAI_RES" +
+                "TAURANT PEG,PELANGGAN_RESTAURANT PEL\nWHERE EV.USER_ID = PEG.USER_ID AND EV.PELAN" +
+                "GGAN_ID = PEL.PELANGGAN_ID AND EV.EVENT_PENJUALAN_ID=@ID";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@ID";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.Size = 16;
+            param.IsNullable = true;
+            param.SourceColumn = "EVENT_PENJUALAN_ID";
+            this._commandCollection[2].Parameters.Add(param);
+            this._commandCollection[3] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "\nSELECT EV.*,PEL.PELANGGAN_NAME,PEG.USER_NAMA\nFROM EVENT_PENJUALAN EV,PEGAWAI_RES" +
+                "TAURANT PEG,PELANGGAN_RESTAURANT PEL\nWHERE EV.USER_ID = PEG.USER_ID AND EV.PELAN" +
+                "GGAN_ID = PEL.PELANGGAN_ID AND EV.EVENT_ID=@ID";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@ID";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int64;
+            param.IsNullable = true;
+            param.SourceColumn = "EVENT_ID";
+            this._commandCollection[3].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13308,6 +13509,78 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FSRESTAURANT.EVENT_PENJUALANDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            FSRESTAURANT.EVENT_PENJUALANDataTable dataTable = new FSRESTAURANT.EVENT_PENJUALANDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBySearch(FSRESTAURANT.EVENT_PENJUALANDataTable dataTable, string ID) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((ID == null)) {
+                throw new global::System.ArgumentNullException("ID");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(ID));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual FSRESTAURANT.EVENT_PENJUALANDataTable GetDataBySearch(string ID) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((ID == null)) {
+                throw new global::System.ArgumentNullException("ID");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(ID));
+            }
+            FSRESTAURANT.EVENT_PENJUALANDataTable dataTable = new FSRESTAURANT.EVENT_PENJUALANDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBySearchEvent(FSRESTAURANT.EVENT_PENJUALANDataTable dataTable, global::System.Nullable<long> ID) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((ID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((long)(ID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual FSRESTAURANT.EVENT_PENJUALANDataTable GetDataBySearchEvent(global::System.Nullable<long> ID) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((ID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((long)(ID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             FSRESTAURANT.EVENT_PENJUALANDataTable dataTable = new FSRESTAURANT.EVENT_PENJUALANDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -13523,6 +13796,34 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(global::System.Nullable<long> p2, string p3, string p4, decimal p5, string p6, global::System.Nullable<long> p8, string p10, string p12, decimal p13) {
             return this.Update(p6, p2, p3, p4, p5, p6, p8, p10, p12, p13);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual string autogen() {
+            global::MySql.Data.MySqlClient.MySqlCommand command = this.CommandCollection[1];
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((string)(returnValue));
+            }
         }
     }
     
@@ -13832,12 +14133,25 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
+            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[2];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT `EVENT_PENJUALAN_ID`, `EVENT_ID`, `MENU_ID`,`QTY`,`PRICE` FROM `EVENT_PENJ" +
                 "UALAN_DETAIL`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT `EVENT_PENJUALAN_ID`, `EVENT_ID`, `MENU_ID`,`QTY`,`PRICE` FROM `EVENT_PENJ" +
+                "UALAN_DETAIL` \r\nWHERE EVENT_PENJUALAN_ID=@ID";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@ID";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.Size = 16;
+            param.IsNullable = true;
+            param.SourceColumn = "EVENT_PENJUALAN_ID";
+            this._commandCollection[1].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13859,6 +14173,42 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FSRESTAURANT.EVENT_PENJUALAN_DETAILDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            FSRESTAURANT.EVENT_PENJUALAN_DETAILDataTable dataTable = new FSRESTAURANT.EVENT_PENJUALAN_DETAILDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillById(FSRESTAURANT.EVENT_PENJUALAN_DETAILDataTable dataTable, string ID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((ID == null)) {
+                throw new global::System.ArgumentNullException("ID");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(ID));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual FSRESTAURANT.EVENT_PENJUALAN_DETAILDataTable GetDataById(string ID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((ID == null)) {
+                throw new global::System.ArgumentNullException("ID");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(ID));
+            }
             FSRESTAURANT.EVENT_PENJUALAN_DETAILDataTable dataTable = new FSRESTAURANT.EVENT_PENJUALAN_DETAILDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -14149,11 +14499,13 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
             tableMapping.ColumnMappings.Add("TABLE_ID", "TABLE_ID");
             tableMapping.ColumnMappings.Add("TABLE_CAPACITY", "TABLE_CAPACITY");
             tableMapping.ColumnMappings.Add("TABLE_STATUS", "TABLE_STATUS");
+            tableMapping.ColumnMappings.Add("TABLE_NAME", "TABLE_NAME");
+            tableMapping.ColumnMappings.Add("TABLE_PRICE", "TABLE_PRICE");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM `EVENT_TABLE` WHERE ((`TABLE_ID` = @p1) AND (`TABLE_CAPACITY` = @p2) " +
-                "AND (`TABLE_STATUS` = @p3))";
+                "AND (`TABLE_STATUS` = @p3) AND (`TABLE_NAME` = @p4) AND (`TABLE_PRICE` = @p5))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -14179,10 +14531,26 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
             param.SourceColumn = "TABLE_STATUS";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p4";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "TABLE_NAME";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p5";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.IsNullable = true;
+            param.SourceColumn = "TABLE_PRICE";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `EVENT_TABLE` (`TABLE_ID`, `TABLE_CAPACITY`, `TABLE_STATUS`) VALUES (" +
-                "@p1, @p2, @p3)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `EVENT_TABLE` (`TABLE_ID`, `TABLE_CAPACITY`, `TABLE_STATUS`, `TABLE_N" +
+                "AME`, `TABLE_PRICE`) VALUES (@p1, @p2, @p3, @p4, @p5)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -14205,11 +14573,23 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "TABLE_STATUS";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p4";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "TABLE_NAME";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p5";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.IsNullable = true;
+            param.SourceColumn = "TABLE_PRICE";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE `EVENT_TABLE` SET `TABLE_ID` = @p1, `TABLE_CAPACITY` = @p2, `TABLE_STATUS`" +
-                " = @p3 WHERE ((`TABLE_ID` = @p4) AND (`TABLE_CAPACITY` = @p5) AND (`TABLE_STATUS" +
-                "` = @p6))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `EVENT_TABLE` SET `TABLE_ID` = @p1, `TABLE_CAPACITY` = @p2, `TABLE_STATUS` = @p3, `TABLE_NAME` = @p4, `TABLE_PRICE` = @p5 WHERE ((`TABLE_ID` = @p6) AND (`TABLE_CAPACITY` = @p7) AND (`TABLE_STATUS` = @p8) AND (`TABLE_NAME` = @p9) AND (`TABLE_PRICE` = @p10))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -14237,11 +14617,25 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
             param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
+            param.SourceColumn = "TABLE_NAME";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p5";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.IsNullable = true;
+            param.SourceColumn = "TABLE_PRICE";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p6";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
             param.SourceColumn = "TABLE_ID";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p5";
+            param.ParameterName = "@p7";
             param.DbType = global::System.Data.DbType.Decimal;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
             param.IsNullable = true;
@@ -14249,11 +14643,27 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p6";
+            param.ParameterName = "@p8";
             param.DbType = global::System.Data.DbType.StringFixedLength;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.String;
             param.IsNullable = true;
             param.SourceColumn = "TABLE_STATUS";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p9";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "TABLE_NAME";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p10";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.IsNullable = true;
+            param.SourceColumn = "TABLE_PRICE";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
         }
@@ -14271,7 +14681,8 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
             this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[2];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT `TABLE_ID`, `TABLE_CAPACITY`, `TABLE_STATUS` FROM `EVENT_TABLE`";
+            this._commandCollection[0].CommandText = "SELECT `TABLE_ID`, `TABLE_CAPACITY`, `TABLE_STATUS`,`TABLE_NAME`,`TABLE_PRICE` FR" +
+                "OM `EVENT_TABLE`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -14336,7 +14747,7 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string p1, decimal p2, string p3) {
+        public virtual int Delete(string p1, decimal p2, string p3, string p4, decimal p5) {
             if ((p1 == null)) {
                 throw new global::System.ArgumentNullException("p1");
             }
@@ -14350,6 +14761,13 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
             else {
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(p3));
             }
+            if ((p4 == null)) {
+                throw new global::System.ArgumentNullException("p4");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(p4));
+            }
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((decimal)(p5));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -14370,7 +14788,7 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string p1, decimal p2, string p3) {
+        public virtual int Insert(string p1, decimal p2, string p3, string p4, decimal p5) {
             if ((p1 == null)) {
                 throw new global::System.ArgumentNullException("p1");
             }
@@ -14384,6 +14802,13 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(p3));
             }
+            if ((p4 == null)) {
+                throw new global::System.ArgumentNullException("p4");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(p4));
+            }
+            this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(p5));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -14404,7 +14829,7 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string p1, decimal p2, string p3, string p4, decimal p5, string p6) {
+        public virtual int Update(string p1, decimal p2, string p3, string p4, decimal p5, string p6, decimal p7, string p8, string p9, decimal p10) {
             if ((p1 == null)) {
                 throw new global::System.ArgumentNullException("p1");
             }
@@ -14431,6 +14856,20 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(p6));
             }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(p7));
+            if ((p8 == null)) {
+                throw new global::System.ArgumentNullException("p8");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(p8));
+            }
+            if ((p9 == null)) {
+                throw new global::System.ArgumentNullException("p9");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(p9));
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(p10));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -14451,8 +14890,8 @@ namespace FS_REST.FSRESTAURANTTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(decimal p2, string p3, string p4, decimal p5, string p6) {
-            return this.Update(p4, p2, p3, p4, p5, p6);
+        public virtual int Update(decimal p2, string p3, string p4, decimal p5, string p6, decimal p7, string p8, string p9, decimal p10) {
+            return this.Update(p6, p2, p3, p4, p5, p6, p7, p8, p9, p10);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

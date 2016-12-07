@@ -18,10 +18,12 @@ namespace FS_REST
         public static FSRESTAURANTTableAdapters.TableAdapterManager adapterMgr = new FSRESTAURANTTableAdapters.TableAdapterManager();
         public static MySqlConnection c =new MySqlConnection(Properties.Settings.Default.restaurantConnectionString);
         public static FSRESTAURANT.PEGAWAI_RESTAURANTRow peg;
+        public static MainForm tis;
         #endregion
         public MainForm()
         {
             InitializeComponent();
+            tis = this;
             //initialize active record pattern
             try
             {
@@ -73,6 +75,28 @@ namespace FS_REST
         public void setPegawai(FSRESTAURANT.PEGAWAI_RESTAURANTRow dr)
         {
             peg = dr;
+        }
+
+        private void insertPenjualanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Event.EventPenjualan ep = new Event.EventPenjualan(StateWindow.insert, null);
+            ep.MdiParent = this;
+            ep.Show(dcPanel);
+        }
+
+        private void searchPenjualanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Event.Search.EventPenjualanSearch eps = new Event.Search.EventPenjualanSearch();
+            eps.MdiParent = this;
+            eps.Show(dcPanel);
+        }
+
+        private void detailTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            adapterMgr.EVENT_PENJUALANTableAdapter.Fill(FS.EVENT_PENJUALAN);
+            EventSearchBook eps = new EventSearchBook(FS.EVENT_BOOKING,FS.EVENT_TABLE);
+            eps.MdiParent = this;
+            eps.Show(dcPanel);
         }
     }
     public enum StateWindow

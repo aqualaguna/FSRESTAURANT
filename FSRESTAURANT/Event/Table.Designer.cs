@@ -31,6 +31,10 @@
             this.nmCapacity = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.btnInsert = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.tbPrice = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nmCapacity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +71,7 @@
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(58, 68);
+            this.btnInsert.Location = new System.Drawing.Point(50, 106);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(158, 36);
             this.btnInsert.TabIndex = 2;
@@ -75,11 +79,48 @@
             this.btnInsert.UseVisualStyleBackColor = true;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(47, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Name :";
+            // 
+            // tbName
+            // 
+            this.tbName.Location = new System.Drawing.Point(96, 54);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(120, 20);
+            this.tbName.TabIndex = 4;
+            // 
+            // tbPrice
+            // 
+            this.tbPrice.Location = new System.Drawing.Point(96, 80);
+            this.tbPrice.Name = "tbPrice";
+            this.tbPrice.Size = new System.Drawing.Size(120, 20);
+            this.tbPrice.TabIndex = 6;
+            this.tbPrice.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(47, 82);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Price :";
+            // 
             // Table
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(290, 131);
+            this.ClientSize = new System.Drawing.Size(268, 198);
+            this.Controls.Add(this.tbPrice);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.tbName);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nmCapacity);
@@ -96,5 +137,9 @@
         private System.Windows.Forms.NumericUpDown nmCapacity;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnInsert;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.TextBox tbPrice;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -25,6 +25,8 @@ namespace FS_REST.Event
                 dr.TABLE_ID = MainForm.adapterMgr.EVENT_TABLETableAdapter.autogen().ToString();
                 dr.TABLE_CAPACITY = nmCapacity.Value;
                 dr.TABLE_STATUS = "free";
+                dr.TABLE_NAME = tbName.Text;
+                dr.TABLE_PRICE = Convert.ToDecimal(tbPrice.Text);
                 MainForm.FS.EVENT_TABLE.AddEVENT_TABLERow(dr);
                 syncToDatabase();
                 MessageBox.Show("sukses!");

@@ -32,6 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\ProyekPCS\ProyekPCS\bin\x86\Debug\MySql.Data.dll</HintPath>
     </Reference>
@@ -41,6 +46,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms.Calendar, Version=1.0.6156.23489, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\ProyekPCS\System.Windows.Forms.Calendar.dll</HintPath>
@@ -82,10 +89,40 @@
     <Compile Include="Event\EventPenjualan.Designer.cs">
       <DependentUpon>EventPenjualan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Event\EventSearch.cs">
+    <Compile Include="Event\Report\Book.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Book.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Event\Report\EventJual.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventJual.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Event\Report\PrintPreview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Event\EventSearch.Designer.cs">
+    <Compile Include="Event\Report\PrintPreview.Designer.cs">
+      <DependentUpon>PrintPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Event\Search\EventPenjualanSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Event\Search\EventPenjualanSearch.Designer.cs">
+      <DependentUpon>EventPenjualanSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Event\Search\EventSearchBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Event\Search\EventSearchBook.Designer.cs">
+      <DependentUpon>EventSearchBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Event\Search\EventSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Event\Search\EventSearch.Designer.cs">
       <DependentUpon>EventSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="Event\Table.cs">
@@ -138,7 +175,24 @@
     <EmbeddedResource Include="Event\EventPenjualan.resx">
       <DependentUpon>EventPenjualan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Event\EventSearch.resx">
+    <EmbeddedResource Include="Event\Report\Book.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Book.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Event\Report\EventJual.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>EventJual.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Event\Report\PrintPreview.resx">
+      <DependentUpon>PrintPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Event\Search\EventPenjualanSearch.resx">
+      <DependentUpon>EventPenjualanSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Event\Search\EventSearchBook.resx">
+      <DependentUpon>EventSearchBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Event\Search\EventSearch.resx">
       <DependentUpon>EventSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Event\Table.resx">
@@ -195,6 +249,9 @@
     <Content Include="lib\System.Windows.Forms.Calendar.dll" />
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.ThemeVS2013Blue.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

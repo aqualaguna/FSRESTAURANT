@@ -28,61 +28,76 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.components = new System.ComponentModel.Container();
+            this.date = new System.Windows.Forms.DateTimePicker();
+            this.timeStart = new System.Windows.Forms.DateTimePicker();
+            this.timeStop = new System.Windows.Forms.DateTimePicker();
+            this.cbTable = new System.Windows.Forms.CheckedListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnBook = new System.Windows.Forms.Button();
+            this.epbook = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epbook)).BeginInit();
             this.SuspendLayout();
             // 
-            // dateTimePicker1
+            // date
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(6, 17);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 0;
+            this.date.Location = new System.Drawing.Point(6, 17);
+            this.date.Name = "date";
+            this.date.Size = new System.Drawing.Size(200, 20);
+            this.date.TabIndex = 0;
             // 
-            // dateTimePicker2
+            // timeStart
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker2.Location = new System.Drawing.Point(3, 64);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 1;
+            this.timeStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.timeStart.Location = new System.Drawing.Point(3, 64);
+            this.timeStart.Name = "timeStart";
+            this.timeStart.Size = new System.Drawing.Size(200, 20);
+            this.timeStart.TabIndex = 1;
             // 
-            // dateTimePicker3
+            // timeStop
             // 
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker3.Location = new System.Drawing.Point(209, 64);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker3.TabIndex = 2;
+            this.timeStop.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.timeStop.Location = new System.Drawing.Point(209, 64);
+            this.timeStop.Name = "timeStop";
+            this.timeStop.Size = new System.Drawing.Size(200, 20);
+            this.timeStop.TabIndex = 2;
             // 
-            // checkedListBox1
+            // cbTable
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(14, 118);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(413, 184);
-            this.checkedListBox1.TabIndex = 3;
+            this.cbTable.FormattingEnabled = true;
+            this.cbTable.Location = new System.Drawing.Point(14, 118);
+            this.cbTable.Name = "cbTable";
+            this.cbTable.Size = new System.Drawing.Size(413, 184);
+            this.cbTable.TabIndex = 3;
+            this.cbTable.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
-            this.groupBox1.Controls.Add(this.dateTimePicker3);
+            this.groupBox1.Controls.Add(this.date);
+            this.groupBox1.Controls.Add(this.timeStart);
+            this.groupBox1.Controls.Add(this.timeStop);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(415, 100);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Header";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(298, 13);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(107, 41);
+            this.btnSearch.TabIndex = 8;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // label1
             // 
@@ -93,61 +108,60 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Time Range";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(91, 308);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(336, 20);
-            this.textBox1.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 311);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Up Payment";
-            // 
             // btnBook
             // 
-            this.btnBook.Location = new System.Drawing.Point(115, 334);
+            this.btnBook.Location = new System.Drawing.Point(116, 308);
             this.btnBook.Name = "btnBook";
             this.btnBook.Size = new System.Drawing.Size(188, 41);
             this.btnBook.TabIndex = 7;
             this.btnBook.Text = "Book Now!";
             this.btnBook.UseVisualStyleBackColor = true;
+            this.btnBook.Click += new System.EventHandler(this.btnBook_Click);
+            // 
+            // epbook
+            // 
+            this.epbook.ContainerControl = this;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(116, 355);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(188, 31);
+            this.btnDelete.TabIndex = 8;
+            this.btnDelete.Text = "Delete Book!!";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // EventBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 387);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnBook);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.cbTable);
             this.Name = "EventBook";
             this.Text = "EventBook";
             this.Load += new System.EventHandler(this.EventBook_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epbook)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.DateTimePicker date;
+        private System.Windows.Forms.DateTimePicker timeStart;
+        private System.Windows.Forms.DateTimePicker timeStop;
+        private System.Windows.Forms.CheckedListBox cbTable;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnBook;
+        private System.Windows.Forms.ErrorProvider epbook;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
